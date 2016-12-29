@@ -1,0 +1,12 @@
+server:
+ port: 8083
+spring:
+ cloud:
+  stream:
+   bindings:
+    feedbackStreamOut:
+     destination: new-feedback
+     content-type: application/json
+     group: feedback
+    feedbackStreamInput:
+     destination: new-feedback

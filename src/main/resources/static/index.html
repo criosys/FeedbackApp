@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>How are you feeling?</title>
+    <style>
+        .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        width: 200px;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+        h1 {
+            color: black;
+        }
+        .button:active {
+        background-color: #0E0E0E
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+function postTest(feedback){
+xhr = new XMLHttpRequest();
+var url = "/post";
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var json = JSON.parse(xhr.responseText);
+    }
+}
+var descName = "description";
+var item = {}
+item [descName] = feedback;
+
+var data = JSON.stringify(item);
+console.log(data);
+xhr.send(data);
+}
+</script>
+
+<h1>How are you feeling today?</h1><br>
+<form>
+    <input type="button" class="button" value="DELIGHTED" onclick="postTest('delighted')" /><br>
+    <input type="button" class="button" value="HAPPY" onclick='postTest("happy")' /><br>
+    <input type="button" class="button" value="INDIFFERENT" onclick='postTest("indifferent")' /><br>
+    <input type="button" class="button" value="SAD" onclick='postTest("sad")' /><br>
+    <input type="button" class="button" value="DISTRAUGHT" onclick='postTest("distraught")' /><br>
+</form>
+<br>
+<br>
+<a href="https://lmbnewtech.slack.com/messages/feedback/">https://lmbnewtech.slack.com/messages/feedback/</a>
+
+
+</body>
+</html>
+
+
+
+
